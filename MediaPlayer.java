@@ -10,9 +10,11 @@ import javafx.stage.Stage;
 public class MediaPlayer extends Application {
     private static final String MEDIA_URL = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
     private static String arg1;
-
+    static int invokeLaunch=0;
+    static Stage myStage=null;
     @Override public void start(Stage stage) {
         stage.setTitle("Media Player");
+        myStage=stage;
         Group root = new Group();
         Scene scene = new Scene(root,600,265);
         // create media player
@@ -21,7 +23,7 @@ public class MediaPlayer extends Application {
         mediaPlayer.setAutoPlay(true);
         MediaControl mediaControl = new MediaControl(mediaPlayer);
         scene.setRoot(mediaControl);
-        scene.getStylesheets().add(MediaPlayer.class.getResource("mediaplayer.css").toExternalForm());
+     //   scene.getStylesheets().add(MediaPlayer.class.getResource("mediaplayer.css").toExternalForm());
         // show stage
         stage.setScene(scene);
         stage.show();
@@ -46,7 +48,13 @@ public class MediaPlayer extends Application {
          if (args.length > 0) {
              arg1 = args[0];
          }
-        Application.launch(args);
+//         if(MediaPlayer.invokeLaunch>0)
+//         myStage.show();
+//         if(MediaPlayer.invokeLaunch==0){
+        new MediaPlayer().launch(args);
+//         MediaPlayer.invokeLaunch++;
+//         }
+        
    //     play(args);
     }
 }
